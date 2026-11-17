@@ -1,0 +1,3 @@
+[mcp_servers.codegraph]
+command = "pnpm"
+args = ["exec", "codegraph", "serve", "--mcp"]

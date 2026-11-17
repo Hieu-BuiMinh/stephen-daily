@@ -1,0 +1,117 @@
+@utility grid-row {
+	position: relative;
+
+	&::before,
+	&::after {
+		content: '';
+		pointer-events: none;
+		position: absolute;
+		left: calc(50% - 50vw);
+		width: 100vw;
+		height: 1px;
+		background-color: var(--border);
+	}
+
+	&::before {
+		top: 0;
+	}
+
+	&::after {
+		bottom: 0;
+	}
+}
+
+@utility stripe-divider {
+	position: relative;
+
+	&::before,
+	&::after {
+		content: '';
+		pointer-events: none;
+		position: absolute;
+		inset-block: 0;
+		left: -100vw;
+		width: calc(100% + 200vw);
+	}
+
+	&::before {
+		background-image: repeating-linear-gradient(
+			315deg,
+			color-mix(in oklab, var(--foreground) 10%, transparent) 0 1px,
+			transparent 1px 8px
+		);
+	}
+
+	&::after {
+		left: calc(50% - 50vw);
+		width: 100vw;
+		border-block: 1px solid var(--border);
+	}
+}
+
+@utility grid-row-striped {
+	position: relative;
+	border-block: 1px solid transparent;
+
+	&::before,
+	&::after {
+		content: '';
+		pointer-events: none;
+		position: absolute;
+		inset-block: -1px;
+		width: 100vw;
+		background-image: repeating-linear-gradient(
+			315deg,
+			color-mix(in oklab, var(--foreground) 10%, transparent) 0 1px,
+			transparent 1px 8px
+		);
+	}
+
+	&::before {
+		right: 100%;
+	}
+
+	&::after {
+		left: 100%;
+	}
+}
+
+[data-slot='grid-row-striped-lines'] {
+	pointer-events: none;
+	position: absolute;
+	inset-block: -1px;
+	left: calc(50% - 50vw);
+	width: 100vw;
+	border-block: 1px solid var(--border);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	[data-slot='grid-separator']::before,
+	[data-slot='grid-row-striped']::before,
+	[data-slot='grid-row-striped']::after {
+		clip-path: inset(0);
+		transition: clip-path 1900ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	[data-slot='grid-separator'][data-in-view='false']::before,
+	[data-slot='grid-row-striped'][data-in-view='false']::before,
+	[data-slot='grid-row-striped'][data-in-view='false']::after {
+		clip-path: inset(0 0 100% 0);
+	}
+
+	[data-slot='grid-row']::before,
+	[data-slot='grid-row']::after,
+	[data-slot='grid-separator']::after,
+	[data-slot='grid-row-striped-lines'] {
+		clip-path: none;
+		transform: scaleX(1);
+		transition: transform 1900ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	[data-slot='grid-row'][data-in-view='false']::before,
+	[data-slot='grid-row'][data-in-view='false']::after,
+	[data-slot='grid-separator'][data-in-view='false']::after,
+	[data-slot='grid-row-striped'][data-in-view='false'] > [data-slot='grid-row-striped-lines'] {
+		transform: scaleX(0);
+	}
+}

@@ -1,0 +1,51 @@
+@reference '../../../../../../app/globals.css';
+
+.frame {
+	@apply @container relative isolate grid aspect-4/5 p-2 text-foreground;
+	grid-template-rows: minmax(0, 1fr);
+}
+
+@media (min-width: 1024px) {
+	.frame {
+		@apply aspect-auto;
+		height: clamp(574px, calc(100svh - 116px), 894px);
+	}
+}
+
+.controls {
+	@apply absolute top-0 right-0 z-10 flex items-center px-2;
+}
+
+.dotButton {
+	@apply flex h-8 cursor-pointer items-center justify-center px-1 rounded-full;
+	@apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+}
+
+.dot {
+	@apply relative block h-2 w-2 overflow-hidden rounded-full bg-muted-foreground/30;
+	transition: width 250ms ease;
+}
+
+.dotButton[aria-current='true'] .dot {
+	@apply w-10;
+}
+
+.progress {
+	@apply absolute inset-0 origin-left rounded-full bg-brand;
+	animation: progress-fill linear both;
+}
+
+@keyframes progress-fill {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.dot {
+		transition: none;
+	}
+}

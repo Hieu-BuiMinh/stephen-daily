@@ -1,0 +1,155 @@
+@reference '../../../../../../app/globals.css';
+
+.hero {
+	/* Set each image independently with url('/assets/images/...'). */
+	--hero-background-image: url('/assets/images/hero/hero-bg-v1.png');
+	--hero-subject-image: url('/assets/images/hero/bitexco-tower.png');
+	--hero-texture-image: url('/assets/images/textures/sky-with-lot-noise.png');
+	--hero-subject-width: 88%;
+	--hero-subject-top: 8%;
+	--hero-background-top: 54%;
+	--hero-ink: var(--foreground);
+}
+
+.poster {
+	@apply @container relative isolate overflow-hidden min-h-0;
+}
+
+.subject,
+.texture {
+	@apply pointer-events-none absolute;
+}
+
+.heading {
+	@apply absolute inset-x-0 z-2 text-(--hero-ink);
+	top: 2%;
+}
+
+.title {
+	@apply m-0 text-brand font-yeseva font-normal whitespace-nowrap;
+	font-size: 15cqw;
+	line-height: 0.95;
+	letter-spacing: -0.06em;
+}
+
+.description {
+	@apply absolute inset-x-0 z-2 grid justify-between px-2 text-muted-foreground;
+	top: 32%;
+	grid-template-columns: 24% 24%;
+	font-family: var(--font-geist-sans), sans-serif;
+	font-size: clamp(10px, 1.5cqw, 17px);
+	line-height: 1.4;
+}
+
+.description p:last-child {
+	@apply text-right;
+}
+
+.artworkLabel {
+	@apply absolute inset-x-0 z-2 flex justify-between px-2 text-(--hero-ink) font-black leading-none;
+	bottom: calc(100% - var(--hero-background-top) + 0.5%);
+	font-family: var(--font-geist-sans), sans-serif;
+	font-size: 3.5cqw;
+}
+
+.artworkLabel p:last-child {
+	@apply self-end text-right font-semibold;
+	font-size: clamp(14px, 2cqw, 26px);
+}
+
+.artwork {
+	@apply absolute inset-x-0 bottom-0 z-1 bg-secondary bg-center bg-cover bg-no-repeat;
+	top: var(--hero-background-top);
+	background-image: var(--hero-background-image);
+	filter: saturate(0.5) contrast(0.94);
+}
+
+.subject {
+	@apply bottom-0 left-1/2 z-3;
+	top: var(--hero-subject-top);
+	width: var(--hero-subject-width);
+	background: var(--hero-subject-image) center bottom / contain no-repeat;
+	transform: translate(-50%, 0);
+	filter: saturate(0.7) contrast(0.96);
+}
+
+.texture {
+	@apply inset-0 z-4 mix-blend-multiply opacity-20;
+	background: var(--hero-texture-image) center / 480px auto repeat;
+	filter: grayscale(1) contrast(1.2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.artwork {
+		animation: background-enter 1300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.subject {
+		animation: subject-enter 1600ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+	}
+
+	.heading,
+	.description p,
+	.artworkLabel p {
+		animation: text-enter 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.heading {
+		animation-delay: 180ms;
+	}
+
+	.description p:first-child {
+		animation-delay: 450ms;
+	}
+
+	.description p:last-child {
+		animation-delay: 600ms;
+	}
+
+	.artworkLabel p:first-child {
+		animation-delay: 750ms;
+	}
+
+	.artworkLabel p:last-child {
+		animation-delay: 850ms;
+	}
+}
+
+@keyframes background-enter {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes subject-enter {
+	from {
+		transform: translate(-50%, 100%);
+	}
+	to {
+		transform: translate(-50%, 0);
+	}
+}
+
+@keyframes text-enter {
+	from {
+		opacity: 0;
+		translate: 0 14px;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+	}
+}
+
+@media (min-width: 1024px) {
+	.heading {
+		@apply text-center;
+	}
+
+	.title {
+		font-size: clamp(80px, 13cqw, 156px);
+	}
+}

@@ -1,0 +1,33 @@
+@import '@repo/stephen-ui/styles.css';
+@source '../';
+
+:root {
+	--blog-paper-texture: url('/assets/images/textures/stamp-texture.png');
+}
+
+@utility font-yeseva {
+	font-family: var(--font-yeseva), Georgia, serif;
+}
+
+@utility font-playfair {
+	font-family: var(--font-playfair), Georgia, serif;
+}
+
+html,
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
+}
+
+body,
+.bg-global {
+	background-color: var(--background);
+	background-image: url('/assets/images/bg/global.svg');
+	background-repeat: repeat;
+	background-size: auto;
+}
+
+.dark body,
+.dark .bg-global {
+	background-image: url('/assets/images/bg/global-dark.svg');
+}

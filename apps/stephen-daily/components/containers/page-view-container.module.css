@@ -1,0 +1,40 @@
+@reference '../../app/globals.css';
+
+.frame {
+	@apply relative border-x-transparent;
+}
+
+.frame::before,
+.frame::after {
+	@apply pointer-events-none absolute inset-y-0 w-px bg-border;
+	content: '';
+}
+
+.frame::before {
+	left: -1px;
+}
+
+.frame::after {
+	right: -1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.frame::before,
+	.frame::after {
+		transform-origin: top;
+		animation: frame-border-enter 1900ms cubic-bezier(0.65, 0, 0.35, 1) both;
+	}
+
+	.frame::after {
+		animation-delay: 120ms;
+	}
+}
+
+@keyframes frame-border-enter {
+	from {
+		transform: scaleY(0);
+	}
+	to {
+		transform: scaleY(1);
+	}
+}

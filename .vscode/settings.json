@@ -1,0 +1,15 @@
+{
+	"js/ts.suggest.autoImports": true,
+	"js/ts.preferences.includePackageJsonAutoImports": "on",
+	"js/ts.preferences.importModuleSpecifier": "non-relative",
+	"js/ts.tsdk": "node_modules/typescript/lib",
+	"js/ts.tsdk.promptToUseWorkspaceVersion": true,
+	"eslint.workingDirectories": [{ "mode": "auto" }],
+	"editor.quickSuggestions": {
+		"strings": "on"
+	},
+	"tailwindCSS.experimental.configFile": {
+		"packages/stephen-ui/src/styles/base.css": "**/*",
+		"apps/stephen-daily/app/globals.css": "apps/stephen-daily/**"
+	}
+}

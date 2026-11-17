@@ -1,0 +1,33 @@
+set -e
+
+echo "--------------------------------------------------"
+echo "[Husky] Starting pre-commit checks..."
+echo "--------------------------------------------------"
+
+echo "[1/4] Checking and fixing staged file formatting (Prettier)..."
+pnpm run format:staged || {
+	echo "[Error] Formatting failed. Commit stopped."
+	exit 1
+}
+
+echo "[2/4] Checking lint (ESLint)..."
+pnpm run lint || {
+	echo "[Error] Lint failed. Fix the issues above before committing."
+	exit 1
+}
+
+echo "[3/4] Checking types (TypeScript)..."
+pnpm run check-types || {
+	echo "[Error] Type check failed. Fix the issues above before committing."
+	exit 1
+}
+
+echo "[4/4] Building workspace..."
+pnpm run build || {
+	echo "[Error] Build failed. Fix the issues above before committing."
+	exit 1
+}
+
+echo "--------------------------------------------------"
+echo "[Husky] All checks passed. Proceeding to commit."
+echo "--------------------------------------------------"

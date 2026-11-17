@@ -1,0 +1,37 @@
+{
+	"name": "@repo/stephen-utils",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts",
+		"./axios": "./src/axios/index.ts",
+		"./date-time": "./src/date-time/index.ts",
+		"./react-query": "./src/react-query/index.ts",
+		"./class-names": "./src/class-names/index.ts",
+		"./api": "./src/axios/index.ts",
+		"./api-types": "./src/axios/types.ts",
+		"./date": "./src/date-time/index.ts"
+	},
+	"scripts": {
+		"test": "node --experimental-strip-types --test tests/axios-builder.test.mjs",
+		"lint": "eslint . --max-warnings 0",
+		"check-types": "tsc --noEmit"
+	},
+	"peerDependencies": {
+		"react": "^18 || ^19"
+	},
+	"devDependencies": {
+		"@repo/stephen-eslint-config": "workspace:*",
+		"@repo/stephen-typescript-config": "workspace:*",
+		"eslint": "9.39.5",
+		"typescript": "6.0.3"
+	},
+	"dependencies": {
+		"@tanstack/react-query": "^5.107.1",
+		"axios": "^1.21.1",
+		"clsx": "^2.1.1",
+		"dayjs": "^1.11.23",
+		"tailwind-merge": "^3.7.0"
+	}
+}

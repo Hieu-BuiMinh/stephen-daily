@@ -1,0 +1,11 @@
+.stamp {
+	height: 100%;
+	padding: 18px;
+	background: #f5f3ee url('/assets/images/textures/stamp-texture.png') center / cover no-repeat;
+	mask:
+		radial-gradient(circle at 10px 0, transparent 6px, #000 6.5px) top / 20px 100% repeat-x,
+		radial-gradient(circle at 10px 100%, transparent 6px, #000 6.5px) bottom / 20px 100% repeat-x,
+		radial-gradient(circle at 0 10px, transparent 6px, #000 6.5px) left / 100% 20px repeat-y,
+		radial-gradient(circle at 100% 10px, transparent 6px, #000 6.5px) right / 100% 20px repeat-y;
+	mask-composite: intersect;
+}

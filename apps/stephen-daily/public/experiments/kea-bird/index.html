@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="vi">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Kea Bird · Local experiment</title>
+		<link rel="stylesheet" href="./style.css" />
+		<script src="./kea-body.js" defer></script>
+		<script src="./kea3d.js" defer></script>
+		<script src="./demo.js" defer></script>
+	</head>
+	<body>
+		<main>
+			<header>
+				<p class="eyebrow">Local experiment / 01</p>
+				<h1>Kea bird</h1>
+				<p>Di chuyển chuột quanh trang để chim nhìn theo. Rê qua thân để xem lông chuyển động.</p>
+			</header>
+			<div class="c-kea" role="img" aria-label="Chim kea trên cành tre, quay đầu theo con trỏ">
+				<img
+					class="c-kea__painting"
+					src="/assets/images/textures/kea-bird/painting.webp"
+					width="2048"
+					height="2048"
+					alt=""
+				/>
+			</div>
+			<footer>
+				<p id="status" role="status">Đang tải renderer…</p>
+				<button id="start" type="button" hidden>Bật chuyển động</button>
+				<button id="ruffle" type="button" disabled>Xù lông</button>
+				<p class="credit">
+					Original artwork & renderer:
+					<a href="https://alexwang.ai/posts/reasoning-as-pathfinding/">Alex Wang</a>
+				</p>
+			</footer>
+		</main>
+	</body>
+</html>
