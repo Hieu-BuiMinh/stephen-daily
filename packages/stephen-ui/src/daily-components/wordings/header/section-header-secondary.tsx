@@ -21,7 +21,9 @@ export function SectionHeaderSecondary({
 		>
 			<div className="min-w-0 flex-1 border-l-4 border-brand pl-4">
 				{eyebrow && (
-					<div className="mb-2 font-mono text-[10px] tracking-widest text-brand uppercase">{eyebrow}</div>
+					<div className="mb-2 font-mono text-[10px] tracking-widest text-brand-text uppercase">
+						{eyebrow}
+					</div>
 				)}
 				<Heading
 					id={titleId}

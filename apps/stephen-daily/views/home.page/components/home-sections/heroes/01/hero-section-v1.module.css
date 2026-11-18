@@ -2,8 +2,8 @@
 
 .hero {
 	/* Set each image independently with url('/assets/images/...'). */
-	--hero-background-image: url('/assets/images/hero/hero-bg-v1.png');
-	--hero-subject-image: url('/assets/images/hero/bitexco-tower.png');
+	--hero-background-image: url('/assets/images/hero/01/hero-bg-v1.png');
+	--hero-subject-image: url('/assets/images/hero/01/bitexco-tower.png');
 	--hero-texture-image: url('/assets/images/textures/sky-with-lot-noise.png');
 	--hero-subject-width: 88%;
 	--hero-subject-top: 8%;
@@ -26,18 +26,18 @@
 }
 
 .title {
-	@apply m-0 text-brand font-yeseva font-normal whitespace-nowrap;
+	@apply m-0 text-brand-text font-yeseva font-normal whitespace-nowrap;
 	font-size: 15cqw;
 	line-height: 0.95;
 	letter-spacing: -0.06em;
 }
 
 .description {
-	@apply absolute inset-x-0 z-2 grid justify-between px-2 text-muted-foreground;
+	@apply absolute inset-x-0 z-2 hidden justify-between px-2 text-muted-foreground sm:grid;
 	top: 32%;
 	grid-template-columns: 24% 24%;
 	font-family: var(--font-geist-sans), sans-serif;
-	font-size: clamp(10px, 1.5cqw, 17px);
+	font-size: var(--hero-description-size);
 	line-height: 1.4;
 }
 
@@ -46,15 +46,19 @@
 }
 
 .artworkLabel {
-	@apply absolute inset-x-0 z-2 flex justify-between px-2 text-(--hero-ink) font-black leading-none;
-	bottom: calc(100% - var(--hero-background-top) + 0.5%);
-	font-family: var(--font-geist-sans), sans-serif;
-	font-size: 3.5cqw;
+	@apply absolute right-2 z-5 flex flex-col items-end gap-1 border-b border-brand-text pb-1 text-right leading-none;
+	bottom: calc(100% - var(--hero-background-top) + 1%);
 }
 
-.artworkLabel p:last-child {
-	@apply self-end text-right font-semibold;
-	font-size: clamp(14px, 2cqw, 26px);
+.artworkCity {
+	@apply font-mono text-muted-foreground uppercase;
+	font-size: clamp(9px, 1.15cqw, 12px);
+	letter-spacing: 0.08em;
+}
+
+.artworkLink {
+	@apply font-playfair font-semibold text-(--hero-ink) underline-offset-4 hover:underline focus-visible:underline;
+	font-size: var(--hero-map-link-size);
 }
 
 .artwork {
@@ -70,7 +74,7 @@
 	width: var(--hero-subject-width);
 	background: var(--hero-subject-image) center bottom / contain no-repeat;
 	transform: translate(-50%, 0);
-	filter: saturate(0.7) contrast(0.96);
+	filter: saturate(0.7) contrast(0.96) url('#hero-subject-outline');
 }
 
 .texture {

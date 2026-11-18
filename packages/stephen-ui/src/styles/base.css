@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import '../daily-components/grids/grids.css';
+@import '../daily-components/image/image.css';
+@import '../daily-components/cards/blog-post-card/blog-post-card.css';
 
 @source '../';
 
@@ -21,6 +23,8 @@
 	--color-primary-hover: var(--primary-hover);
 	--color-primary-foreground: var(--primary-foreground);
 	--color-brand: var(--brand);
+	--color-brand-text: var(--brand-text);
+	--color-brand-soft: var(--brand-soft);
 	--color-brand-hover: var(--brand-hover);
 	--color-brand-foreground: var(--brand-foreground);
 	--color-secondary: var(--secondary);
@@ -65,9 +69,11 @@
 	--primary: #262626;
 	--primary-hover: #363636;
 	--primary-foreground: #ffffff;
-	--brand: #ff3c00;
-	--brand-hover: #e63600;
-	--brand-foreground: #ffffff;
+	--brand: #a8bfa3;
+	--brand-text: #526b4d;
+	--brand-soft: #e3ebdd;
+	--brand-hover: #40563c;
+	--brand-foreground: #243021;
 	--button-surface: #ffffff;
 	--button-surface-hover: #fafaf9;
 	--button-text: #44403c;
@@ -106,6 +112,9 @@
 }
 
 .dark {
+	--brand-text: #a8bfa3;
+	--brand-hover: #c1d2bb;
+	--brand-soft: #293326;
 	--button-surface: #252522;
 	--button-surface-hover: #2a2a27;
 	--button-text: #e7e5e4;
@@ -166,52 +175,4 @@
 @utility dot-grid {
 	background-image: radial-gradient(color-mix(in oklab, var(--foreground) 10%, transparent) 1px, transparent 0);
 	background-size: 8px 8px;
-}
-
-@utility torn-paper-card {
-	position: relative;
-	isolation: isolate;
-	filter: drop-shadow(0 1px 1px color-mix(in oklab, var(--foreground) 12%, transparent));
-
-	&::before,
-	&::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		mask: var(--torn-paper-mask, url('./assets/torn-paper-mask.svg')) center / 100% 100% no-repeat;
-	}
-
-	&::before {
-		z-index: -3;
-		background-color: color-mix(in oklab, var(--background) 96%, var(--foreground) 4%);
-	}
-
-	&::after {
-		z-index: -2;
-		background-image: var(--blog-paper-texture, none);
-		background-size: 420px auto;
-		background-repeat: repeat;
-		mix-blend-mode: multiply;
-		opacity: 0.06;
-	}
-}
-
-@utility paper-halftone {
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	pointer-events: none;
-	background-color: var(--foreground);
-	opacity: var(--paper-halftone-opacity, 0.065);
-	mask-image:
-		var(--torn-paper-mask, url('./assets/torn-paper-mask.svg')), url('./assets/paper-halftone.svg'),
-		radial-gradient(ellipse 85% 70% at var(--paper-halftone-position, 100% 100%), #000, transparent 85%);
-	mask-size:
-		100% 100%,
-		320px 320px,
-		100% 100%;
-	mask-position: center, var(--paper-halftone-offset, 0 0), center;
-	mask-repeat: no-repeat, repeat, no-repeat;
-	mask-composite: intersect;
 }

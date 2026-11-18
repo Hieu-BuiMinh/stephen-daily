@@ -1,0 +1,27 @@
+@utility paper-texture-card {
+	position: relative;
+	isolation: isolate;
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	&::before {
+		background-color: color-mix(in oklab, var(--background) 96%, var(--foreground) 4%);
+	}
+
+	&::after {
+		background-image: url('/assets/images/textures/magazine-paper-texture.png');
+		background-size: 780px auto;
+		background-position: var(--paper-texture-position);
+		background-repeat: repeat;
+		mix-blend-mode: multiply;
+		opacity: 0.08;
+	}
+}

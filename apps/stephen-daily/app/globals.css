@@ -1,10 +1,6 @@
 @import '@repo/stephen-ui/styles.css';
 @source '../';
 
-:root {
-	--blog-paper-texture: url('/assets/images/textures/stamp-texture.png');
-}
-
 @utility font-yeseva {
 	font-family: var(--font-yeseva), Georgia, serif;
 }

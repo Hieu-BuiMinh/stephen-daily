@@ -1,6 +1,8 @@
 @reference '../../../../../../app/globals.css';
 
 .frame {
+	--hero-description-size: clamp(10px, 1.2cqw, 14px);
+	--hero-map-link-size: clamp(12px, 1.7cqw, 20px);
 	@apply @container relative isolate grid aspect-4/5 p-2 text-foreground;
 	grid-template-rows: minmax(0, 1fr);
 }

@@ -14,17 +14,23 @@ function HeroSectionV1() {
 						<h1 className={styles.title}>Stephen Daily</h1>
 					</header>
 					<div className={styles.description}>
-						<p>Design with purpose. Build with care. Stay curious.</p>
-						<p>Notes on interfaces, code, and ideas taking shape.</p>
+						<p>
+							I love this city in the little moments: coffee on a low stool, a sudden shower, the streets
+							lighting up again.
+						</p>
+						<p>
+							From here, the streets I know by heart look a little different. I could sit up there and
+							watch the city for hours.
+						</p>
 					</div>
 					<div className={styles.artworkLabel}>
-						<p className="italic">ALWAYS BUILDING</p>
+						<p className={styles.artworkCity}>Saigon, Vietnam</p>
 						<p>
 							<a
 								href={MAP_URL || undefined}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:underline"
+								className={styles.artworkLink}
 							>
 								Bitexco Tower
 							</a>

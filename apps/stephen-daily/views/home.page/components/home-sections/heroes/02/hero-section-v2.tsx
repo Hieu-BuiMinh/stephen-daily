@@ -38,24 +38,31 @@ function HeroSectionV2() {
 						</defs>
 					</svg>
 					<div aria-hidden="true" className={styles.artwork} data-hero-layer="background" />
+					<div aria-hidden="true" className={styles.subBackground} />
 					<div aria-hidden="true" className={styles.subject} data-hero-layer="subject" />
 				</div>
 				<div className={styles.artworkLabel}>
-					<p className="italic">A SLOWER LOOK</p>
+					<p className={styles.artworkCity}>Saigon, Vietnam</p>
 					<p>
 						<a
 							href={MAP_URL || undefined}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="hover:underline"
+							className={styles.artworkLink}
 						>
-							Việt Nam Quốc Tự
+							Vietnam Quoc Tu
 						</a>
 					</p>
 				</div>
 				<div className={styles.description}>
-					<p>A little stillness. A different perspective. Something worth keeping.</p>
-					<p>Small discoveries from familiar streets and everyday life.</p>
+					<p>
+						A few steps in from the street, the traffic sounds softer. I like taking my time here and
+						looking up at the tiled roofs.
+					</p>
+					<p>
+						This is one of my favorite corners of Saigon. The city is still going about its day, and for a
+						little while I can slow down.
+					</p>
 				</div>
 				<div aria-hidden="true" className={styles.texture} data-hero-layer="texture" />
 			</NewsGrid.Section>

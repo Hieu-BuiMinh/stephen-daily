@@ -28,11 +28,14 @@ const subnavItemClassName =
 export function DailyNavItem(props: DailyNavItemProps) {
 	const label = (
 		<>
-			<span className="text-[10px] font-semibold tracking-[0.16em] text-brand uppercase">{props.label}</span>
-			<span className="text-[10px] font-medium tracking-widest text-foreground uppercase">
+			<span className="text-[10px] font-semibold tracking-[0.16em] text-brand-text uppercase">{props.label}</span>
+			<span className="hidden text-[10px] font-medium tracking-widest text-foreground uppercase sm:inline">
 				{'heading' in props ? props.heading : props.description}
 			</span>
-			<span aria-hidden="true" className="font-mono text-[9px] tracking-widest text-muted-foreground">
+			<span
+				aria-hidden="true"
+				className="hidden font-mono text-[9px] tracking-widest text-muted-foreground sm:inline"
+			>
 				{props.number}
 			</span>
 		</>
@@ -73,7 +76,7 @@ export function DailyNavItem(props: DailyNavItemProps) {
 											{item.href ? (
 												<NavigationMenuLink
 													asChild
-													className={`${subnavItemClassName} hover:border-brand hover:bg-transparent hover:text-brand focus:border-brand focus:bg-transparent focus:text-brand`}
+													className={`${subnavItemClassName} hover:border-brand hover:bg-transparent hover:text-brand-hover focus:border-brand focus:bg-transparent focus:text-brand-hover`}
 												>
 													{props.renderLink(item.href, itemContent)}
 												</NavigationMenuLink>

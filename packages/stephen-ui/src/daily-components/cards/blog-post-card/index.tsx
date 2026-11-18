@@ -1,15 +1,15 @@
-import type { ComponentProps, CSSProperties, ReactNode } from 'react'
+import type { ComponentProps, CSSProperties } from 'react'
 import { Card } from '@repo/stephen-ui/base/card'
 import { cn } from '@repo/stephen-utils'
+import { DailyBaseImage, type DailyBaseImageProps } from '../../image'
 import { BlogPostCardHeader, type BlogPostCardHeaderProps } from './header'
-import { createTornPaperMask } from './torn-paper-mask'
 
 export type BlogPostCardProps = Omit<ComponentProps<typeof Card>, 'title' | 'children'> & {
 	title: string
 	subtitle: string
 	author?: BlogPostCardHeaderProps['author']
 	href: string
-	image: ReactNode
+	imageSrc: DailyBaseImageProps['src']
 	date: string
 	dateLabel: string
 	views: number
@@ -22,7 +22,7 @@ export function BlogPostCard({
 	subtitle,
 	author,
 	href,
-	image,
+	imageSrc,
 	date,
 	dateLabel,
 	views,
@@ -32,7 +32,7 @@ export function BlogPostCard({
 	style,
 	...props
 }: BlogPostCardProps) {
-	const halftoneSeed =
+	const textureSeed =
 		Array.from(href).reduce((seed, character) => Math.imul(seed, 31) + character.charCodeAt(0), 0) >>> 0
 
 	return (
@@ -43,18 +43,15 @@ export function BlogPostCard({
 			data-orientation={orientation}
 			style={
 				{
-					'--torn-paper-mask': createTornPaperMask(href),
-					'--paper-halftone-position': ['0% 0%', '100% 0%', '0% 100%', '100% 100%'][halftoneSeed % 4],
-					'--paper-halftone-offset': `${halftoneSeed % 320}px ${(halftoneSeed >>> 8) % 320}px`,
+					'--paper-texture-position': `${textureSeed % 101}% ${(textureSeed >>> 8) % 101}%`,
 					...style,
 				} as CSSProperties
 			}
 			className={cn(
-				'torn-paper-card h-full min-w-0 gap-0 rounded-none border-0 bg-transparent p-4 text-foreground shadow-none sm:p-5',
+				'paper-texture-card h-full min-w-0 gap-0 rounded-none border-0 bg-transparent p-4 text-foreground shadow-none sm:p-5',
 				className
 			)}
 		>
-			<span aria-hidden="true" className="paper-halftone" />
 			<div
 				className={cn(
 					'group relative flex min-w-0 flex-1 flex-col gap-3',
@@ -62,7 +59,17 @@ export function BlogPostCard({
 				)}
 			>
 				<div className="relative aspect-3/2 overflow-hidden bg-muted [&_img]:h-full [&_img]:w-full [&_img]:object-cover [&_img]:saturate-75">
-					{image}
+					<DailyBaseImage
+						src={imageSrc}
+						alt=""
+						fill
+						preview={false}
+						sizes={
+							orientation === 'horizontal'
+								? '(max-width: 639px) 100vw, 40vw'
+								: '(max-width: 639px) 100vw, 33vw'
+						}
+					/>
 				</div>
 				<div className="flex min-w-0 flex-1 flex-col">
 					<BlogPostCardHeader
@@ -80,7 +87,7 @@ export function BlogPostCard({
 						author={author}
 						className="mb-3 min-w-0"
 						titleClassName={cn(
-							'truncate transition-colors group-hover:text-brand group-focus-within:text-brand',
+							'truncate transition-colors group-hover:text-brand-hover group-focus-within:text-brand-hover',
 							orientation === 'horizontal' && 'sm:text-3xl'
 						)}
 						subtitleClassName={cn(

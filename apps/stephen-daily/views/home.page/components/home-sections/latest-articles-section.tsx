@@ -57,7 +57,7 @@ function LatestArticlesSection() {
 				title="Latest articles"
 				subtitle="Recent stories and notes on design, technology, and everyday discoveries."
 				actions={
-					<a href="/blog" className="text-xs text-brand">
+					<a href="/blog" className="text-xs text-brand-text">
 						Explore articles →
 					</a>
 				}
@@ -81,18 +81,7 @@ function LatestArticlesSection() {
 								),
 							}}
 							orientation={index === 0 ? 'horizontal' : 'vertical'}
-							image={
-								<Image
-									src={imageSrc}
-									alt=""
-									fill
-									sizes={
-										index === 0
-											? '(max-width: 639px) 100vw, 40vw'
-											: '(max-width: 639px) 100vw, 33vw'
-									}
-								/>
-							}
+							imageSrc={imageSrc}
 						/>
 					</li>
 				))}

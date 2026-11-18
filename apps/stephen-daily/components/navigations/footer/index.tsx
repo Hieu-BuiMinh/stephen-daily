@@ -46,7 +46,7 @@ const socialLinks = [
 ]
 
 const linkClassName =
-	'w-fit underline-offset-4 transition-colors hover:text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand'
+	'w-fit underline-offset-4 transition-colors hover:text-brand-hover hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand'
 
 export default function AppFooter() {
 	return (
@@ -109,7 +109,7 @@ export default function AppFooter() {
 						<Signature
 							aria-hidden="true"
 							stroke="currentColor"
-							className="w-52 max-w-full resize-none text-brand shadow-none sm:w-56"
+							className="w-52 max-w-full resize-none text-brand-text shadow-none sm:w-56"
 						/>
 					</div>
 					<p className="border-t border-border pt-2 font-mono text-xs uppercase">{APP_CONFIG.author.name}</p>
@@ -121,7 +121,7 @@ export default function AppFooter() {
 					<p className="mb-2 font-mono text-[9px] tracking-[0.18em] text-muted-foreground uppercase">
 						A note to myself
 					</p>
-					<h2 className="font-playfair text-lg font-semibold">Thank you for choosing to keep going.</h2>
+					<h2 className="font-playfair text-lg font-semibold">Thank me for choosing to keep going.</h2>
 					<p className="mt-2 font-sans text-sm leading-relaxed text-muted-foreground">
 						There is still a lot I don’t know. I’m grateful for what this path has taught me, and I hope to
 						keep learning, stay patient, and take the next small step.

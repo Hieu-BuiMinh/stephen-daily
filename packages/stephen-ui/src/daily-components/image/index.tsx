@@ -2,7 +2,7 @@
 
 import NextImage from 'next/image'
 import { ImageOff } from 'lucide-react'
-import { useState, type ComponentProps, type ReactNode } from 'react'
+import { useState, type ComponentProps, type CSSProperties, type ReactNode } from 'react'
 import { cn } from '@repo/stephen-utils'
 import {
 	DailyModal,
@@ -39,6 +39,7 @@ function ImageContent({
 }: DailyBaseImageProps) {
 	const [status, setStatus] = useState<ImageStatus>('loading')
 	const [open, setOpen] = useState(false)
+	const [texturePosition, setTexturePosition] = useState('50% 50%')
 	const loading = status === 'loading' || status === 'fallback-loading'
 	const failed = status === 'fallback-loading' || status === 'fallback-loaded' || status === 'failed'
 	const canPreview = status === 'loaded'
@@ -65,6 +66,7 @@ function ImageContent({
 				className
 			)}
 			onLoad={(event) => {
+				setTexturePosition(`${Math.random() * 100}% ${Math.random() * 100}%`)
 				setStatus(failed ? 'fallback-loaded' : 'loaded')
 				onLoad?.(event)
 			}}
@@ -81,8 +83,10 @@ function ImageContent({
 			data-slot="base-image"
 			data-state={status}
 			aria-busy={loading}
+			style={{ '--image-texture-position': texturePosition } as CSSProperties}
 			className={cn(
 				'relative inline-block max-w-full align-middle',
+				!props.fill && 'w-fit',
 				props.fill && 'absolute inset-0 block size-full',
 				containerClassName
 			)}

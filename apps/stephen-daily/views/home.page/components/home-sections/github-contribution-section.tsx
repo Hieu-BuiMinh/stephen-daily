@@ -9,7 +9,7 @@ function GithubContributionSection() {
 				eyebrow="Behind the code"
 				title={
 					<>
-						One commit <span className="text-brand">at a time.</span>
+						One commit <span className="text-brand-text">at a time.</span>
 					</>
 				}
 				subtitle="My commit history across the months and years."

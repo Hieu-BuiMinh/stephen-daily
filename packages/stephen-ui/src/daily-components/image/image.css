@@ -1,0 +1,37 @@
+@layer components {
+	[data-slot='base-image'] {
+		isolation: isolate;
+	}
+
+	[data-slot='base-image']:is([data-state='loaded'], [data-state='fallback-loaded']) {
+		& > img,
+		& > button > img {
+			filter: sepia(0.25) saturate(0.8) contrast(1);
+		}
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			pointer-events: none;
+		}
+
+		&::before {
+			z-index: 1;
+			background-image: url('/assets/images/textures/old-photo-texture.png');
+			background-size: 150% 150%;
+			background-position: var(--image-texture-position);
+			background-repeat: no-repeat;
+			mix-blend-mode: screen;
+			opacity: 1;
+		}
+
+		&::after {
+			background-color: rgb(209 184 142 / 18%);
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='.22'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23grain)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+			mix-blend-mode: multiply;
+		}
+	}
+}

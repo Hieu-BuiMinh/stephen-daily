@@ -18,7 +18,7 @@ export function DailyModalContent({ className, ...props }: DailyModalContentProp
 			{...props}
 			data-slot="daily-modal-content"
 			className={cn(
-				'max-h-[calc(100svh-2rem)] gap-0 overflow-y-auto rounded-none border-border bg-background p-0 text-foreground shadow-xl *:data-[slot=dialog-close]:rounded-none *:data-[slot=dialog-close]:border *:data-[slot=dialog-close]:border-border *:data-[slot=dialog-close]:p-1 *:data-[slot=dialog-close]:opacity-100 *:data-[slot=dialog-close]:transition-colors *:data-[slot=dialog-close]:hover:border-brand *:data-[slot=dialog-close]:hover:text-brand *:data-[slot=dialog-close]:focus:ring-brand',
+				'max-h-[calc(100svh-2rem)] gap-0 overflow-y-auto rounded-none border-border bg-background p-0 text-foreground shadow-xl *:data-[slot=dialog-close]:rounded-none *:data-[slot=dialog-close]:border *:data-[slot=dialog-close]:border-border *:data-[slot=dialog-close]:p-1 *:data-[slot=dialog-close]:opacity-100 *:data-[slot=dialog-close]:transition-colors *:data-[slot=dialog-close]:hover:border-brand *:data-[slot=dialog-close]:hover:text-brand-hover *:data-[slot=dialog-close]:focus:ring-brand',
 				className
 			)}
 		/>
