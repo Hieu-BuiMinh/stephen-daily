@@ -2,11 +2,28 @@
 	"name": "stephen-contents",
 	"version": "0.0.0",
 	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./index.ts",
+		"./build": "./build.js",
+		"./types": "./types/index.ts",
+		"./utils": "./utils/index.ts"
+	},
 	"scripts": {
-		"lint": "eslint . --max-warnings 0"
+		"build": "velite",
+		"dev": "velite dev",
+		"lint": "eslint . --max-warnings 0",
+		"check-types": "velite && tsc --noEmit"
 	},
 	"devDependencies": {
 		"@repo/stephen-eslint-config": "workspace:*",
-		"eslint": "9.39.5"
+		"@repo/stephen-typescript-config": "workspace:*",
+		"@types/mdx": "^2.0.14",
+		"@types/node": "26.4.1",
+		"@types/react": "19.2.18",
+		"eslint": "9.39.5",
+		"rehype-slug": "^6.0.0",
+		"typescript": "6.0.3",
+		"velite": "^0.4.0"
 	}
 }

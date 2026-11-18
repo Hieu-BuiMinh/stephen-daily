@@ -10,7 +10,8 @@ function PageLayout({ children, editionDate }: PropsWithChildren<{ editionDate: 
 	return (
 		<div
 			ref={scrollContainer}
-			className="bg-global h-svh w-full overflow-auto scrollbar-none [&::-webkit-scrollbar]:hidden"
+			data-page-scroll
+			className="group/page-layout bg-global h-svh w-full overflow-auto scrollbar-none [--navbar-height:5rem] motion-safe:has-[[data-mdx-body]]:scroll-smooth [&::-webkit-scrollbar]:hidden"
 		>
 			<div className="flex flex-col overflow-x-clip">
 				<AppNavbar scrollContainer={scrollContainer} editionDate={editionDate} />

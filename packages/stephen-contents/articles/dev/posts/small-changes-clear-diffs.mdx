@@ -1,0 +1,112 @@
+---
+id: small-changes-clear-diffs
+title: Giữ cho một thay đổi nhỏ thật sự nhỏ
+createdAt: 2026-11-18
+description: 'Một cách tiếp cận thực dụng khi sửa giao diện: hiểu luồng dữ liệu, sửa đúng vấn đề và để lại một diff dễ đọc.'
+cover: /assets/images/fallback/01.png
+published: true
+type: post
+hashTags:
+    - frontend
+    - clean-code
+    - workflow
+---
+
+Sửa một lỗi giao diện thường bắt đầu bằng một yêu cầu rất ngắn: “Ẩn những bài chưa được publish.” Nhưng từ một dòng điều kiện, chúng ta có thể đi khá xa: đổi tên biến, tách thêm hook, viết lại component và tiện tay chỉnh luôn cách sắp xếp.
+
+Đến lúc mở diff, câu hỏi ban đầu đã bị che khuất bởi những thay đổi không cần thiết.
+
+Một cách làm khác là xác định thật rõ hành vi cần sửa, rồi giữ phần còn lại ổn định.
+
+## Bắt đầu từ hành vi
+
+Trước khi mở editor, thử diễn đạt yêu cầu bằng một ví dụ cụ thể:
+
+> Có ba bài viết, trong đó một bài là bản nháp. Trang danh sách chỉ được hiển thị hai bài đã publish.
+
+Ví dụ này giúp xác định phạm vi: cần lọc dữ liệu trước khi render. Chưa có yêu cầu đổi layout, đổi URL hay thêm một nguồn dữ liệu mới.
+
+```ts
+const posts = [
+	{ id: 'first-post', title: 'Bài đầu tiên', published: true },
+	{ id: 'work-in-progress', title: 'Bài đang viết', published: false },
+	{ id: 'another-note', title: 'Một ghi chú khác', published: true },
+]
+
+const publishedPosts = posts.filter((post) => post.published)
+```
+
+Điều kiện nằm ngay cạnh dữ liệu nên người đọc có thể hiểu mục đích mà không cần đi qua một lớp helper khác.
+
+## Theo dữ liệu đến nơi hiển thị
+
+<Image
+	src="/assets/images/fallback/01.png"
+	width={200}
+	height={200}
+	alt="The New Yorker sign above the city skyline"
+	caption="Select the image to enlarge it."
+/>
+
+<Image
+	src="/assets/images/fallback/01.png"
+	width={200}
+	height={300}
+	alt="The New Yorker sign above the city skyline"
+	caption="Select the image to enlarge it."
+/>
+
+<Image
+	src="/assets/images/hero/03/hero-bg-v3.png"
+	width={300}
+	height={200}
+	alt="The New Yorker sign above the city skyline"
+	caption="Select the image to enlarge it."
+/>
+
+Một thay đổi nhỏ vẫn cần đủ ngữ cảnh. Nếu chỉ sửa trang danh sách, bài nháp có thể vẫn được truy cập qua đường dẫn detail đã biết.
+
+Với luồng bài viết trong Stephen Daily, có ba điểm cần kiểm tra:
+
+| Nơi hiển thị          | Điều cần giữ đúng                                    |
+| --------------------- | ---------------------------------------------------- |
+| Trang chủ             | Chỉ chọn bài đã publish cho mục bài mới              |
+| Danh sách theo chủ đề | Lọc đúng collection và type                          |
+| Trang chi tiết        | Đối chiếu collection, type, ID và trạng thái publish |
+
+Mục tiêu không phải thêm cùng một điều kiện ở mọi nơi một cách máy móc. Mục tiêu là hiểu những nơi cùng chịu ảnh hưởng bởi một quy tắc.
+
+### Sắp xếp trước khi giới hạn
+
+Nếu cần lấy bốn bài mới nhất, thứ tự xử lý cũng là một phần của hành vi:
+
+1. Lọc những bài được phép hiển thị.
+2. Sắp xếp theo ngày đăng.
+3. Lấy bốn bài đầu tiên.
+
+Lấy bốn bài trước rồi mới sắp xếp chỉ cho biết thứ tự của bốn bài đã chọn. Nó không đảm bảo chúng là bốn bài mới nhất của cả danh sách.
+
+## Đọc lại diff như một người review
+
+Sau khi sửa xong, đọc lại diff với một câu hỏi: “Mỗi dòng thay đổi có giúp giải quyết yêu cầu ban đầu không?”
+
+Nếu có một phần chỉ nhằm làm code trông đẹp hơn, hãy cân nhắc để nó thành một thay đổi riêng. Khi phạm vi rõ ràng, người review có thể dành sự chú ý cho tính đúng đắn thay vì phải đoán lý do đằng sau từng chỉnh sửa.
+
+<section className="my-8 border-l-4 border-brand bg-card p-5 text-foreground">
+	<p className="font-semibold">Một diff dễ đọc kể được một câu chuyện.</p>
+	<div className="mt-2 text-sm text-muted-foreground">
+		Vấn đề là gì, điều kiện nào đã thay đổi và hành vi nào cần được giữ nguyên?
+	</div>
+</section>
+
+## Kiểm tra điều có thể sai
+
+Với ví dụ bài viết, những kiểm tra hữu ích là: bài public vẫn xuất hiện, bài nháp bị ẩn, URL sai trả về 404 và thứ tự bài mới không thay đổi ngoài ý muốn.
+
+Số lượng file thay đổi ít không tự chứng minh rằng bản sửa là đúng. Một vài kiểm tra bám sát hành vi sẽ giúp chúng ta tự tin hơn khi hoàn tất công việc.
+
+Điều đáng giữ lại là một thói quen: hiểu đủ ngữ cảnh, sửa đúng chỗ và kiểm tra kết quả người dùng thực sự nhìn thấy.
+
+<Button asChild>
+	<a href="/topics/dev">Đọc thêm bài về lập trình</a>
+</Button>

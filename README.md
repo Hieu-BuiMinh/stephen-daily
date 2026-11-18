@@ -45,6 +45,45 @@ pnpm run build:stephen-daily
 pnpm run start:stephen-daily
 ```
 
+## Generate and preview posts
+
+Run these commands from the workspace root.
+
+Generate content once from MDX in `packages/stephen-contents/articles/`:
+
+```sh
+pnpm --filter stephen-contents build
+```
+
+Generated data is written to `packages/stephen-contents/.velite/`.
+
+Start Stephen Daily with automatic content generation and MDX watching:
+
+```sh
+pnpm dev:stephen-daily
+```
+
+Open [http://localhost:3000/topics](http://localhost:3000/topics) to browse published posts.
+To show the example post, set `published: true` in
+`packages/stephen-contents/articles/dev/posts/mdx-example.mdx`, then open
+[http://localhost:3000/topics/dev/post/mdx-example](http://localhost:3000/topics/dev/post/mdx-example).
+When not watching, run the content build again after editing MDX.
+
+Watch content independently without starting the app:
+
+```sh
+pnpm --filter stephen-contents dev
+```
+
+Generate content and check its TypeScript types:
+
+```sh
+pnpm --filter stephen-contents check-types
+```
+
+See [Stephen Contents](packages/stephen-contents/README.md) for collections and frontmatter,
+and [content pages](apps/stephen-daily/README.md#content-pages) for routes and rendering.
+
 ## Shared packages
 
 | Package                           | Purpose                                                                                                            |

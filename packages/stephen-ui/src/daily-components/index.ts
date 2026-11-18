@@ -1,4 +1,5 @@
 export { DailyButton, dailyButtonVariants, type DailyButtonProps } from './button'
+export { MDXContent, type MDXContentProps } from './mdx'
 export { DailyCheckbox, type DailyCheckboxProps } from './checkbox'
 export { DailySkeleton, type DailySkeletonProps } from './skeleton'
 export { DailyBaseImage, type DailyBaseImageProps } from './image'

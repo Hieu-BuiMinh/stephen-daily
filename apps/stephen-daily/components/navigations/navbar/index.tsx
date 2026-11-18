@@ -23,12 +23,18 @@ function AppNavbar({
 
 	useEffect(() => {
 		const content = contentRef.current
-		if (!content) return
+		const navbar = navbarRef.current
+		const container = scrollContainer.current
+		if (!content || !navbar || !container) return
 
-		const observer = new ResizeObserver(() => setContentHeight(content.offsetHeight))
+		const observer = new ResizeObserver(() => {
+			setContentHeight(content.offsetHeight)
+			container.style.setProperty('--navbar-height', `${navbar.offsetHeight}px`)
+		})
 		observer.observe(content)
+		observer.observe(navbar)
 		return () => observer.disconnect()
-	}, [])
+	}, [scrollContainer])
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
 		// Expanding the navigation can change scroll through browser scroll anchoring.
@@ -41,6 +47,7 @@ function AppNavbar({
 	return (
 		<motion.nav
 			ref={navbarRef}
+			data-navbar-visible={isVisible}
 			initial={{ opacity: 0, y: -20 }}
 			animate={{ opacity: 1, y: isVisible ? 0 : '-100%' }}
 			transition={{ duration: 0.6, ease: 'easeOut', y: { duration: 0.3, ease: 'easeInOut' } }}

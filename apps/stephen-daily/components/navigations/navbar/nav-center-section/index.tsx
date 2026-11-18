@@ -16,7 +16,11 @@ const navItems: DailyNavItemData[] = [
 		heading: 'Selected work',
 		imageSrc: '/assets/images/fallback/01.png',
 		items: [
-			{ label: 'Web Development', subtitle: 'A selection of websites and web applications.' },
+			{
+				label: 'Web Development',
+				subtitle: 'A selection of websites and web applications.',
+				href: '/topics/projects',
+			},
 			{ label: 'UI Experiments', subtitle: 'Exploring interfaces, motion, and small interactions.' },
 			{ label: 'Open Source', subtitle: 'Tools and contributions shared with the community.' },
 		],
@@ -27,9 +31,9 @@ const navItems: DailyNavItemData[] = [
 		heading: 'From the journal',
 		imageSrc: '/assets/images/fallback/01.png',
 		items: [
-			{ label: 'Engineering', subtitle: 'Notes on building software and solving problems.' },
-			{ label: 'Design Notes', subtitle: 'Thoughts on typography, layout, and interaction.' },
-			{ label: 'Personal Stories', subtitle: 'Lessons and observations along the way.' },
+			{ label: 'Engineering', subtitle: 'Notes on building software and solving problems.', href: '/topics/dev' },
+			{ label: 'Reading Notes', subtitle: 'Books, ideas, and lessons from reading.', href: '/topics/books' },
+			{ label: 'Personal Stories', subtitle: 'Lessons and observations along the way.', href: '/topics/others' },
 		],
 	},
 	{
@@ -39,6 +43,7 @@ const navItems: DailyNavItemData[] = [
 		imageSrc: '/assets/images/fallback/01.png',
 		items: [
 			{ label: 'Front Page', subtitle: 'Return to the latest edition of Stephen Daily.', href: '/' },
+			{ label: 'Topics', subtitle: 'Explore articles, guides, projects, and retrospectives.', href: '/topics' },
 			{ label: 'About', subtitle: 'Meet Stephen and discover the story behind the work.', href: '/about' },
 			{ label: 'Contact', subtitle: 'Start a conversation or discuss a collaboration.' },
 		],

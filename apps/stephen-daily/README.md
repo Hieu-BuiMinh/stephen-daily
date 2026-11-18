@@ -1,5 +1,48 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
 
+## Content pages
+
+Run `pnpm dev:stephen-daily` from the workspace root, then open `/topics`.
+Velite builds and watches MDX in `packages/stephen-contents/articles`.
+
+| Collection URL     | Types                                                                                 |
+| ------------------ | ------------------------------------------------------------------------------------- |
+| `/topics/dev`      | `post`, `short`                                                                       |
+| `/topics/books`    | `life-habits`, `productivity`, `others`                                               |
+| `/topics/others`   | `ba-zi`, `i-ching`, `buddhism`, `single`, `journaling`, `inner-compass`, `year-recap` |
+| `/topics/doc`      | `doc`                                                                                 |
+| `/topics/projects` | `project`                                                                             |
+| `/topics/retro`    | `milestone`, `recap` (from `retroType`)                                               |
+
+Lists live at `/topics/[collection]/[type]`; details at
+`/topics/[collection]/[type]/[id]`. The ID comes from MDX frontmatter.
+Unknown collections/types/IDs and unpublished posts return 404. Metadata uses the
+same lookup and the detail route for its canonical path.
+
+All lists use MDX `published` as their source of truth. They sort `createdAt`
+newest first, with undated posts last. Collection previews and the home page take
+four posts after filtering and sorting. No backend interaction API is connected.
+The only initial MDX example is a draft; publish your own articles to populate lists.
+
+Post bodies render on the server through `@repo/stephen-ui/daily-components/mdx`.
+Tailwind Typography styles Markdown with `prose prose-sm`, and
+`rehype-slug` supplies heading IDs for anchor links. `Button` is available
+in article MDX; register additional components in `views/topics/post-detail.tsx`.
+The detail page renders a separate header with the cover, title and description above the MDX body; its UI will be expanded incrementally.
+
+The desktop TOC consumes Velite `toc` and optional `audio`. Its curved track follows
+nested headings and highlights sections using the page scroll container. Sticky
+spacing follows navbar visibility. Long lists scroll inside the sidebar; audio uses
+native browser controls.
+Only TOC data crosses the client boundary; the MDX body stays server-rendered.
+
+Topics reuse the existing page layout and its request-time edition date.
+`generateStaticParams` enumerates published posts, while the layout retains its
+existing dynamic rendering behavior.
+
+Run `pnpm --filter stephen-daily test:content` to check publication filtering,
+ordering, route matching, URL generation, nested TOC geometry and dot positioning.
+
 ## Getting Started
 
 First, run the development server:

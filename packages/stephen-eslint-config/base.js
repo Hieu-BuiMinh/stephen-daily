@@ -13,6 +13,7 @@ export const config = defineConfig([
 		'**/.next/**',
 		'**/.turbo/**',
 		'**/.codegraph/**',
+		'**/.velite/**',
 		'**/dist/**',
 		'**/out/**',
 		'**/build/**',

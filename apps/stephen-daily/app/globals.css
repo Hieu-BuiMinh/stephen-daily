@@ -1,5 +1,7 @@
 @import '@repo/stephen-ui/styles.css';
+@plugin '@tailwindcss/typography';
 @source '../';
+@source '../../../packages/stephen-contents/articles';
 
 @utility font-yeseva {
 	font-family: var(--font-yeseva), Georgia, serif;

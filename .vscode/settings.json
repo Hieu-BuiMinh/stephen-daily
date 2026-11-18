@@ -1,4 +1,7 @@
 {
+	"files.associations": { "*.mdx": "mdx" },
+	"emmet.includeLanguages": { "mdx": "javascriptreact" },
+	"tailwindCSS.includeLanguages": { "mdx": "javascriptreact" },
 	"js/ts.suggest.autoImports": true,
 	"js/ts.preferences.includePackageJsonAutoImports": "on",
 	"js/ts.preferences.importModuleSpecifier": "non-relative",

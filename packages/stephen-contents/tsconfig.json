@@ -1,0 +1,16 @@
+{
+	"extends": "@repo/stephen-typescript-config/react-library.json",
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"noEmit": true,
+		"declaration": false,
+		"declarationMap": false,
+		"types": ["node", "react", "mdx"]
+	},
+	"include": ["**/*.ts", "**/*.tsx", "**/*.mdx", ".velite/index.d.ts"],
+	"exclude": ["node_modules"],
+	"mdx": {
+		"checkMdx": true
+	}
+}

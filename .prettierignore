@@ -6,3 +6,5 @@ dist/
 pnpm-lock.yaml
 next-env.d.ts
 .agents/skills/caveman/
+.velite/
+**/.velite/
