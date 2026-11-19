@@ -4,6 +4,7 @@ title: Giữ cho một thay đổi nhỏ thật sự nhỏ
 createdAt: 2026-11-18
 description: 'Một cách tiếp cận thực dụng khi sửa giao diện: hiểu luồng dữ liệu, sửa đúng vấn đề và để lại một diff dễ đọc.'
 cover: /assets/images/fallback/01.png
+audio: 'https://res.cloudinary.com/hieu-buiminh/video/upload/v1776926511/sau-khi-phat-nhap-niet-ban-ngai-o-dau_h8qrdi.mp3'
 published: true
 type: post
 hashTags:
@@ -20,13 +21,21 @@ Một cách làm khác là xác định thật rõ hành vi cần sửa, rồi g
 
 ## Bắt đầu từ hành vi
 
+<MdxVideoZoom
+	src="https://res.cloudinary.com/hieu-buiminh/video/upload/v1776926611/1d308ef2-ca28-4672-b064-88c7af6403e5_lkd1bt.mp4"
+	width={400}
+	height={400}
+/>
+
 Trước khi mở editor, thử diễn đạt yêu cầu bằng một ví dụ cụ thể:
 
 > Có ba bài viết, trong đó một bài là bản nháp. Trang danh sách chỉ được hiển thị hai bài đã publish.
 
 Ví dụ này giúp xác định phạm vi: cần lọc dữ liệu trước khi render. Chưa có yêu cầu đổi layout, đổi URL hay thêm một nguồn dữ liệu mới.
 
-```ts
+<MdxCodeBlock fileName="posts.ts">
+
+```ts {7}
 const posts = [
 	{ id: 'first-post', title: 'Bài đầu tiên', published: true },
 	{ id: 'work-in-progress', title: 'Bài đang viết', published: false },
@@ -36,11 +45,13 @@ const posts = [
 const publishedPosts = posts.filter((post) => post.published)
 ```
 
+</MdxCodeBlock>
+
 Điều kiện nằm ngay cạnh dữ liệu nên người đọc có thể hiểu mục đích mà không cần đi qua một lớp helper khác.
 
 ## Theo dữ liệu đến nơi hiển thị
 
-<Image
+<MdxImage
 	src="/assets/images/fallback/01.png"
 	width={200}
 	height={200}
@@ -48,7 +59,7 @@ const publishedPosts = posts.filter((post) => post.published)
 	caption="Select the image to enlarge it."
 />
 
-<Image
+<MdxImage
 	src="/assets/images/fallback/01.png"
 	width={200}
 	height={300}
@@ -56,7 +67,7 @@ const publishedPosts = posts.filter((post) => post.published)
 	caption="Select the image to enlarge it."
 />
 
-<Image
+<MdxImage
 	src="/assets/images/hero/03/hero-bg-v3.png"
 	width={300}
 	height={200}
@@ -86,6 +97,26 @@ Nếu cần lấy bốn bài mới nhất, thứ tự xử lý cũng là một p
 
 Lấy bốn bài trước rồi mới sắp xếp chỉ cho biết thứ tự của bốn bài đã chọn. Nó không đảm bảo chúng là bốn bài mới nhất của cả danh sách.
 
+Đổi tab để so sánh vị trí của `.slice(0, 4)` trong hai phiên bản:
+
+<MdxCodeBlock labels={['Trước khi sửa', 'Sau khi sửa']} fileName="latest-posts.ts">
+
+```ts {3}
+const latestPosts = posts
+	.filter((post) => post.published)
+	.slice(0, 4)
+	.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+```
+
+```ts {3-4}
+const latestPosts = posts
+	.filter((post) => post.published)
+	.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+	.slice(0, 4)
+```
+
+</MdxCodeBlock>
+
 ## Đọc lại diff như một người review
 
 Sau khi sửa xong, đọc lại diff với một câu hỏi: “Mỗi dòng thay đổi có giúp giải quyết yêu cầu ban đầu không?”
@@ -107,6 +138,27 @@ Số lượng file thay đổi ít không tự chứng minh rằng bản sửa l
 
 Điều đáng giữ lại là một thói quen: hiểu đủ ngữ cảnh, sửa đúng chỗ và kiểm tra kết quả người dùng thực sự nhìn thấy.
 
-<Button asChild>
+<MdxButton asChild>
 	<a href="/topics/dev">Đọc thêm bài về lập trình</a>
-</Button>
+</MdxButton>
+
+<MdxCodeBlock fileName="example.ts">
+
+```ts {2}
+const name = 'Stephen'
+console.log(name)
+```
+
+</MdxCodeBlock>
+
+<MdxCodeBlock labels={['pnpm', 'npm']} fileName="terminal">
+
+```bash
+pnpm install
+```
+
+```bash
+npm install
+```
+
+</MdxCodeBlock>

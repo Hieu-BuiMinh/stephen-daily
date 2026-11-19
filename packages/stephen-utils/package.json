@@ -7,6 +7,7 @@
 		".": "./src/index.ts",
 		"./axios": "./src/axios/index.ts",
 		"./date-time": "./src/date-time/index.ts",
+		"./i-ching": "./src/i-ching/index.ts",
 		"./react-query": "./src/react-query/index.ts",
 		"./class-names": "./src/class-names/index.ts",
 		"./api": "./src/axios/index.ts",

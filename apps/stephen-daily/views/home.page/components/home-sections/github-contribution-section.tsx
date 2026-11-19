@@ -1,5 +1,4 @@
-/* eslint-disable import-x/no-named-as-default */
-import GitHubContributions from '@/components/github-contributions'
+import { GitHubContributions } from '@/components/github-contributions'
 import { GridRow, SectionHeaderPrimary } from '@repo/stephen-ui/daily-components'
 
 function GithubContributionSection() {

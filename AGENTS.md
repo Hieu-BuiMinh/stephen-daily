@@ -25,6 +25,10 @@ and preserving existing business behavior take priority.
 
 ## Changes
 
+- For migration or parity work, use the sibling checkout `../stephen-v2` as a
+  read-only reference for original components, utilities, and content. Check
+  `stephen-news` first, then look in that checkout before asking for its path.
+
 - Inspect implementation, callers, types, similar code, and actual data flow before editing.
 - Preserve business logic, API contracts, UI flows, state, loading/errors, forms, routing,
   and responsive behavior unless the task explicitly changes them.

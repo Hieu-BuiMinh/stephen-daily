@@ -1,0 +1,87 @@
+.code-block .code-block-tab[data-state='active'] {
+	color: var(--brand-text);
+	text-shadow: 0 0 5px color-mix(in oklab, var(--brand-text) 55%, transparent);
+}
+
+.code-block .code-block-tab[data-state='active']::after {
+	box-shadow: 0 0 5px color-mix(in oklab, var(--brand-text) 60%, transparent);
+}
+
+.code-block-tab-rail::before {
+	box-shadow:
+		inset 0 1px rgb(0 0 0 / 13%),
+		inset 0 -1px rgb(255 255 255 / 40%);
+}
+
+html.dark .code-block-tab-rail::before {
+	background-color: color-mix(in oklab, var(--border) 40%, var(--background));
+	box-shadow:
+		inset 0 1px rgb(0 0 0 / 65%),
+		inset 0 -1px rgb(255 255 255 / 18%);
+}
+
+.code-block pre {
+	@apply recessed-panel dot-grid;
+
+	max-height: 44rem;
+	overflow: auto;
+	margin: 0;
+	padding: 0.875rem 0;
+	background-color: var(--recessed-panel-bg) !important;
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+	line-height: 1.8;
+	scrollbar-color: var(--muted-foreground) transparent;
+	scrollbar-width: thin;
+	tab-size: 4;
+}
+
+.code-block pre code {
+	display: block;
+	min-width: 100%;
+	width: max-content;
+	font-family: inherit;
+	counter-reset: codeblock-line;
+}
+
+.code-block pre:not(.shiki) {
+	padding-inline: 0.75rem;
+}
+
+.code-block .shiki .line {
+	display: inline-block;
+	width: 100%;
+	padding-inline-end: 0.75rem;
+	counter-increment: codeblock-line;
+}
+
+.code-block .shiki .line::before {
+	content: counter(codeblock-line);
+	display: inline-block;
+	min-width: 3ch;
+	margin-inline: 0.75rem 1rem;
+	text-align: right;
+	color: var(--muted-foreground);
+	font-size: 0.75rem;
+	user-select: none;
+}
+
+.code-block .shiki .line.highlighted {
+	background-color: var(--color-neutral-200);
+}
+
+html.dark .code-block .shiki .line.highlighted {
+	background-color: #212126;
+}
+
+html.dark .shiki:not(:where(.code-block *)) {
+	background-color: var(--shiki-dark-bg) !important;
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+	color: var(--shiki-dark) !important;
+	font-style: var(--shiki-dark-font-style) !important;
+	font-weight: var(--shiki-dark-font-weight) !important;
+	text-decoration: var(--shiki-dark-text-decoration) !important;
+}

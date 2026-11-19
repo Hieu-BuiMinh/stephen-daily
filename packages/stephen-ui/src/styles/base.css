@@ -3,6 +3,8 @@
 @import '../daily-components/grids/grids.css';
 @import '../daily-components/image/image.css';
 @import '../daily-components/cards/blog-post-card/blog-post-card.css';
+@import '../daily-components/mdx/custom-components/code-block/style.css';
+@import '../i-ching-components/i-ching.style.css';
 
 @source '../';
 
@@ -170,6 +172,27 @@
 
 @utility font-playfair {
 	font-family: var(--font-playfair), Georgia, serif;
+}
+
+@utility recessed-panel {
+	--recessed-panel-bg: color-mix(in oklab, var(--muted) 68%, var(--background));
+	--recessed-panel-shadow: 0 1px 3px rgb(34 32 28 / 15%);
+	--recessed-panel-ring: color-mix(in oklab, var(--border) 58%, transparent);
+
+	border: 1px solid transparent;
+	border-radius: 0.75rem;
+	background-color: var(--recessed-panel-bg);
+	box-shadow:
+		inset var(--recessed-panel-shadow),
+		0 0 0 2px var(--recessed-panel-ring);
+
+	@variant dark {
+		--recessed-panel-shadow: 0 2px 5px rgb(0 0 0 / 38%);
+		--recessed-panel-ring: color-mix(in oklab, var(--brand-text) 17%, transparent);
+
+		border-color: var(--border);
+		border-top-color: color-mix(in oklab, var(--border) 70%, var(--background));
+	}
 }
 
 @utility dot-grid {

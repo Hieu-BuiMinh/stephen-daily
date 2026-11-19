@@ -27,7 +27,7 @@ The only initial MDX example is a draft; publish your own articles to populate l
 Post bodies render on the server through `@repo/stephen-ui/daily-components/mdx`.
 Tailwind Typography styles Markdown with `prose prose-sm`, and
 `rehype-slug` supplies heading IDs for anchor links. `Button` is available
-in article MDX; register additional components in `views/topics/post-detail.tsx`.
+in article MDX; register additional components in `views/topics.page/pages/post-detail.page/index.tsx`.
 The detail page renders a separate header with the cover, title and description above the MDX body; its UI will be expanded incrementally.
 
 The desktop TOC consumes Velite `toc` and optional `audio`. Its curved track follows

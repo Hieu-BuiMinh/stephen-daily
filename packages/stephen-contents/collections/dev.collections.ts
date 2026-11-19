@@ -4,7 +4,7 @@ import { computedFields } from '../utils/velite-transform'
 
 const devPost = defineCollection({
 	name: 'DevBlogPost',
-	pattern: ['articles/dev/posts/**/*.mdx', 'articles/dev/shorts/**/*.mdx'],
+	pattern: ['articles/dev/posts/**/*.mdx', 'articles/dev/shorts/**/*.mdx', 'articles/dev/docs/**/*.mdx'],
 	schema: s
 		.object({
 			id: s.unique(),
@@ -18,7 +18,7 @@ const devPost = defineCollection({
 			description: s.string().max(999).optional(),
 			published: s.boolean().default(true),
 			hashTags: s.array(s.string()).optional(),
-			type: s.enum(['post', 'short']),
+			type: s.enum(['post', 'short', 'doc']),
 			body: s.mdx(),
 			author: s
 				.object({

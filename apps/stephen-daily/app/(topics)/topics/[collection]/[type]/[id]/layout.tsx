@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getPostHref, getTopicPost } from '@/views/topics/data'
+import { getPostHref, getTopicPost } from '@/views/topics.page/data'
 
 export async function generateMetadata({
 	params,

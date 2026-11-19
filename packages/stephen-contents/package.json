@@ -18,6 +18,8 @@
 	"devDependencies": {
 		"@repo/stephen-eslint-config": "workspace:*",
 		"@repo/stephen-typescript-config": "workspace:*",
+		"@shikijs/rehype": "4.6.0",
+		"@shikijs/transformers": "4.6.0",
 		"@types/mdx": "^2.0.14",
 		"@types/node": "26.4.1",
 		"@types/react": "19.2.18",

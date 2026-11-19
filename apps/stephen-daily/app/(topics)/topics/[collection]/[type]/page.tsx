@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { SectionHeaderSecondary } from '@repo/stephen-ui/daily-components'
-import { topicCollections, getPublishedPosts } from '@/views/topics/data'
-import { PostList } from '@/views/topics/components/post-list'
+import { topicCollections } from '@/views/topics.page/data'
+import { TypePageView } from '@/views/topics.page/pages/type.page'
 
 type Props = { params: Promise<{ collection: string; type: string }> }
 
@@ -26,20 +24,5 @@ export default async function TypePage({ params }: Props) {
 	const topic = topicCollections.find((topic) => topic.slug === collection)
 	const group = topic?.groups.find((group) => group.slug === type)
 	if (!topic || !group) notFound()
-
-	return (
-		<>
-			<SectionHeaderSecondary
-				headingAs="h1"
-				title={group.title}
-				subtitle={topic.description}
-				actions={
-					<Link href={`/topics/${topic.slug}`} className="text-sm text-brand-text">
-						{topic.title} →
-					</Link>
-				}
-			/>
-			<PostList posts={getPublishedPosts([topic], type)} />
-		</>
-	)
+	return <TypePageView topic={topic} group={group} />
 }

@@ -1,3 +1,5 @@
+import rehypeShiki from '@shikijs/rehype'
+import { transformerMetaHighlight } from '@shikijs/transformers'
 import { defineConfig } from 'velite'
 import rehypeSlug from 'rehype-slug'
 import { bookRecap } from './collections/book.collections'
@@ -10,7 +12,18 @@ import { shortWriting } from './collections/short.collections'
 export default defineConfig({
 	root: '.',
 	strict: true,
-	mdx: { rehypePlugins: [rehypeSlug] },
+	mdx: {
+		rehypePlugins: [
+			rehypeSlug,
+			[
+				rehypeShiki,
+				{
+					themes: { light: 'github-light', dark: 'github-dark' },
+					transformers: [transformerMetaHighlight()],
+				},
+			],
+		],
+	},
 	collections: { bookRecap, devPost, docPost, projectPost, retroPost, shortWriting },
 	output: {
 		data: '.velite',

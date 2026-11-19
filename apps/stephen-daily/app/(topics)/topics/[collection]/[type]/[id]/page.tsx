@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
-import { getPublishedPosts, getTopicPost, topicCollections } from '@/views/topics/data'
-import { PostDetail } from '@/views/topics/post-detail'
+import { getPublishedPosts, getTopicPost, topicCollections } from '@/views/topics.page/data'
+import { PostDetail } from '@/views/topics.page/pages/post-detail.page'
 
 type Props = { params: Promise<{ collection: string; type: string; id: string }> }
 

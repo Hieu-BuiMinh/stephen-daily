@@ -1,7 +1,7 @@
-﻿import { SectionHeaderSecondary } from '@repo/stephen-ui/daily-components'
+import { SectionHeaderSecondary } from '@repo/stephen-ui/daily-components'
 import Link from 'next/link'
-import { getPublishedPosts, topicCollections } from '@/views/topics/data'
-import { PostList } from '@/views/topics/components/post-list'
+import { getPublishedPosts, topicCollections } from '@/views/topics.page/data'
+import { PostList } from '@/views/topics.page/components/post-list'
 
 function LatestArticlesSection() {
 	return (
