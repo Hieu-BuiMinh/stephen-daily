@@ -1,10 +1,15 @@
 import Link from 'next/link'
 import { GridSeparator } from '@repo/stephen-ui/daily-components'
 import { TopicPageHeader } from '@/views/topics.page/components/topic-page-header'
-import { PostList } from '../../components/post-list'
-import { getPublishedPosts, type TopicCollection } from '../../data'
+import { PostList } from '@/views/topics.page/components/post-list'
+import { getPublishedPosts, type TopicCollection } from '@/views/topics.page/data'
 
-export function TypePageView({ topic, group }: { topic: TopicCollection; group: TopicCollection['groups'][number] }) {
+export type TypePageViewProps = {
+	topic: TopicCollection
+	group: TopicCollection['groups'][number]
+}
+
+export function TypePageView({ topic, group }: TypePageViewProps) {
 	return (
 		<>
 			<TopicPageHeader

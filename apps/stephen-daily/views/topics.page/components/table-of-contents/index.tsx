@@ -1,5 +1,6 @@
+import { DailyTapeContainer } from '@repo/stephen-ui/daily-components'
 import { RetroMusicPlayer } from '@repo/stephen-ui/daily-components/audio'
-import type { ContentPost } from '../../data'
+import type { ContentPost } from '@/views/topics.page/data'
 import { TableOfContentsNav } from './toc-nav'
 
 export function TableOfContents({
@@ -23,7 +24,33 @@ export function TableOfContents({
 					<TableOfContentsNav items={items} />
 				</div>
 			)}
-			{audio && <RetroMusicPlayer source={audio} cover={cover} className="shrink-0" />}
+			{audio && (
+				<DailyTapeContainer
+					className="w-full shrink-0"
+					tape={{
+						pieces: [
+							{
+								position: 'top-left',
+								asset: 'transparent/01.webp',
+								offsetX: 8,
+								offsetY: 6,
+								rotation: -32,
+								size: 100,
+							},
+							{
+								position: 'bottom-right',
+								asset: 'transparent/100.webp',
+								offsetX: -8,
+								offsetY: 6,
+								rotation: -29,
+								size: 100,
+							},
+						],
+					}}
+				>
+					<RetroMusicPlayer source={audio} cover={cover} />
+				</DailyTapeContainer>
+			)}
 		</aside>
 	)
 }

@@ -1,10 +1,9 @@
-import type { ComponentProps, CSSProperties } from 'react'
-import { Card } from '@repo/stephen-ui/base/card'
+import type { ComponentProps } from 'react'
 import { cn } from '@repo/stephen-utils'
 import { DailyBaseImage, type DailyBaseImageProps } from '../../image'
 import { BlogPostCardHeader, type BlogPostCardHeaderProps } from './header'
 
-export type BlogPostCardProps = Omit<ComponentProps<typeof Card>, 'title' | 'children'> & {
+export type BlogPostCardProps = Omit<ComponentProps<'div'>, 'title' | 'children'> & {
 	title: string
 	subtitle: string
 	author?: BlogPostCardHeaderProps['author']
@@ -29,36 +28,26 @@ export function BlogPostCard({
 	likes,
 	orientation = 'vertical',
 	className,
-	style,
 	...props
 }: BlogPostCardProps) {
-	const textureSeed =
-		Array.from(href).reduce((seed, character) => Math.imul(seed, 31) + character.charCodeAt(0), 0) >>> 0
-
 	return (
-		<Card
+		<div
 			{...props}
 			role="article"
 			data-slot="blog-post-card"
 			data-orientation={orientation}
-			style={
-				{
-					'--paper-texture-position': `${textureSeed % 101}% ${(textureSeed >>> 8) % 101}%`,
-					...style,
-				} as CSSProperties
-			}
 			className={cn(
-				'paper-texture-card h-full min-w-0 gap-0 rounded-none border-0 bg-transparent p-4 text-foreground shadow-none sm:p-5',
+				'recessed-panel post-card-surface relative flex h-full min-w-0 flex-col overflow-hidden p-4 sm:p-5',
 				className
 			)}
 		>
 			<div
 				className={cn(
-					'group relative flex min-w-0 flex-1 flex-col gap-3',
+					'flex min-w-0 flex-1 flex-col gap-3',
 					orientation === 'horizontal' && 'sm:grid sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] sm:gap-5'
 				)}
 			>
-				<div className="relative aspect-3/2 overflow-hidden bg-muted [&_img]:h-full [&_img]:w-full [&_img]:object-cover [&_img]:saturate-75">
+				<div className="post-card-cover aspect-3/2 [&_img]:h-full [&_img]:w-full [&_img]:object-cover [&_img]:saturate-75">
 					<DailyBaseImage
 						src={imageSrc}
 						alt=""
@@ -76,22 +65,16 @@ export function BlogPostCard({
 						headingAs="h3"
 						eyebrow={<time dateTime={date}>{dateLabel}</time>}
 						title={
-							<a
-								href={href}
-								className="outline-none after:absolute after:inset-0 focus-visible:after:ring-2 focus-visible:after:ring-brand focus-visible:after:ring-offset-4 focus-visible:after:ring-offset-background"
-							>
+							<a href={href} className="post-card-link">
 								{title}
 							</a>
 						}
 						subtitle={subtitle}
 						author={author}
 						className="mb-3 min-w-0"
-						titleClassName={cn(
-							'truncate transition-colors group-hover:text-brand-hover group-focus-within:text-brand-hover',
-							orientation === 'horizontal' && 'sm:text-3xl'
-						)}
+						titleClassName={cn('truncate font-sans', orientation === 'horizontal' && 'sm:text-3xl')}
 						subtitleClassName={cn(
-							'line-clamp-3 max-w-none text-justify',
+							'line-clamp-3 max-w-none text-justify text-muted-foreground',
 							orientation === 'horizontal' && 'sm:line-clamp-10'
 						)}
 					/>
@@ -102,6 +85,6 @@ export function BlogPostCard({
 					</div>
 				</div>
 			</div>
-		</Card>
+		</div>
 	)
 }

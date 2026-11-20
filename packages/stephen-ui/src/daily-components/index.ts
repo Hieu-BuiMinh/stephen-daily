@@ -3,6 +3,8 @@ export { MDXContent, type MDXContentProps } from './mdx'
 export { DailyCheckbox, type DailyCheckboxProps } from './checkbox'
 export { DailySkeleton, type DailySkeletonProps } from './skeleton'
 export { DailyBaseImage, type DailyBaseImageProps } from './image'
+export { DailyTapeContainer, type DailyTapeContainerProps, type DailyTapeOptions } from './overlays/tape-container'
+export { DailyNoiseOverlay, type DailyNoiseOverlayProps } from './overlays/noise-overlay'
 export {
 	DailyModal,
 	DailyModalTrigger,

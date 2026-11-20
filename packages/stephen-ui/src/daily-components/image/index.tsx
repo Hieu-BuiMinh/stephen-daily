@@ -13,6 +13,7 @@ import {
 	DailyModalTrigger,
 } from '../modal'
 import { DailySkeleton } from '../skeleton'
+import { DailyTapeOverlay, type DailyTapeOptions } from '../overlays/tape-container'
 
 export type DailyBaseImageProps = ComponentProps<typeof NextImage> & {
 	fallbackSrc?: ComponentProps<typeof NextImage>['src']
@@ -20,6 +21,7 @@ export type DailyBaseImageProps = ComponentProps<typeof NextImage> & {
 	preview?: boolean
 	previewTitle?: ReactNode
 	modalProps?: Omit<ComponentProps<typeof DailyModalContent>, 'children'>
+	tape?: DailyTapeOptions
 }
 
 type ImageStatus = 'loading' | 'loaded' | 'fallback-loading' | 'fallback-loaded' | 'failed'
@@ -27,12 +29,13 @@ type ImageStatus = 'loading' | 'loaded' | 'fallback-loading' | 'fallback-loaded'
 function ImageContent({
 	src,
 	alt,
-	fallbackSrc = '/assets/images/fallback/01.png',
+	fallbackSrc = '/assets/images/fallback/02.png',
 	containerClassName,
 	className,
 	preview = false,
 	previewTitle = alt || 'Image preview',
 	modalProps,
+	tape,
 	onLoad,
 	onError,
 	...props
@@ -134,6 +137,7 @@ function ImageContent({
 			) : (
 				image
 			)}
+			{tape && (status === 'loaded' || status === 'fallback-loaded') && <DailyTapeOverlay {...tape} />}
 			{loading && (
 				<DailySkeleton
 					aria-hidden="true"

@@ -158,14 +158,14 @@ function RetroMusicPlayerControls({ source, cover, className }: RetroMusicPlayer
 			</svg>
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute inset-1 -z-10 rounded-2xl bg-muted"
+				className="pointer-events-none absolute inset-1 -z-10 hidden rounded-2xl bg-muted lg:block"
 				style={{ filter: `url(#${outlineId})` }}
 			/>
 			<div className="relative isolate flex w-full min-w-0 flex-col gap-3 rounded-2xl border border-border bg-muted p-2">
 				<div className="recessed-panel relative flex shrink-0 items-center justify-center overflow-hidden border-border! after:pointer-events-none after:absolute after:inset-0 after:z-5 after:rounded-[inherit] after:shadow-[inset_0_2px_6px_rgb(0_0_0/25%)] lg:h-50 lg:border-b-0! dark:after:shadow-[inset_0_3px_9px_rgb(0_0_0/55%)]">
 					<Image
 						className="hidden size-full object-cover brightness-110 contrast-125 grayscale lg:block"
-						src={cover || '/assets/images/fallback/01.png'}
+						src={cover || '/assets/images/fallback/02.png'}
 						width={370}
 						height={370}
 						alt=""

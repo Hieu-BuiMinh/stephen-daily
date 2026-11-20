@@ -25,3 +25,70 @@
 		opacity: 0.08;
 	}
 }
+
+@utility post-card-surface {
+	border-radius: 10px;
+	--recessed-panel-bg: color-mix(in oklab, var(--background) 95%, var(--foreground) 5%);
+	color: var(--foreground);
+	transition: border-color 200ms;
+
+	&:hover {
+		border-color: color-mix(in oklab, var(--border) 75%, transparent);
+	}
+
+	& [data-slot='blog-post-card-header'] a:not(.post-card-link):focus-visible {
+		outline: 2px solid #858580;
+		outline-offset: 2px;
+		box-shadow: none;
+	}
+
+	@variant motion-reduce {
+		transition: none;
+	}
+
+	@variant dark {
+		--foreground: #e5e5e3;
+		--muted-foreground: #aaa9a5;
+		--recessed-panel-bg: #1b1b1a;
+		--recessed-panel-shadow: 0 2px 4px rgb(0 0 0 / 35%);
+
+		&:hover {
+			border-color: #484845;
+		}
+	}
+}
+
+@utility post-card-link {
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		border-radius: 10px;
+	}
+
+	&:focus-visible {
+		outline: none;
+		text-decoration: underline;
+	}
+
+	&:focus-visible::after {
+		outline: 2px solid #858580;
+		outline-offset: -2px;
+	}
+}
+
+@utility post-card-cover {
+	position: relative;
+	border-radius: 7px;
+	overflow: hidden;
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		pointer-events: none;
+		box-shadow: inset 0 2px 5px rgb(0 0 0 / 28%);
+	}
+}

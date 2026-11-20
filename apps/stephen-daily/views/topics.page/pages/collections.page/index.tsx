@@ -1,21 +1,11 @@
 import { GridSeparator, SectionHeaderSecondary } from '@repo/stephen-ui/daily-components'
 import Link from 'next/link'
-import { TopicPageHeader } from '@/views/topics.page/components/topic-page-header'
-import { PostList } from '../../components/post-list'
-import { getPublishedPosts, type TopicCollection } from '../../data'
+import { PostList } from '@/views/topics.page/components/post-list'
+import { getPublishedPosts, type TopicCollection } from '@/views/topics.page/data'
 
-export function CollectionPageView({ topic }: { topic: TopicCollection }) {
+export function CollectionPostGroups({ topic }: { topic: TopicCollection }) {
 	return (
 		<>
-			<TopicPageHeader
-				title={topic.title}
-				description={topic.description}
-				actions={
-					<Link href="/topics" className="text-sm text-brand-text">
-						All topics →
-					</Link>
-				}
-			/>
 			<GridSeparator className="h-12 m-0" />
 			{topic.groups.map((group) => (
 				<section key={group.slug} aria-labelledby={`group-${group.slug}`} className="border-b">

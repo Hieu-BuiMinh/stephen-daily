@@ -3,6 +3,11 @@
 Frontend monorepo with pnpm 10.13.1, Turborepo, Next.js, React, and TypeScript.
 Use Node 22.15+ and below 25 for the local CodeGraph CLI.
 
+## Image editing
+
+Use [Overprint by Cedilla Studio](https://www.cedilla.studio/overprint) when editing images.
+Use [Resource Boy's Noise Textures](https://resourceboy.com/textures/noise-textures/) for noise overlays.
+
 ## Development
 
 ```sh

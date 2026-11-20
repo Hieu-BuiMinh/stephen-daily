@@ -49,15 +49,15 @@ export function DetailHeader({ cover, title, description, createdAt, audio }: De
 					</time>
 				)}
 			</div>
-			{audio && (
-				<div className="relative z-10 mt-5 px-3 lg:hidden">
-					<RetroMusicPlayer source={audio} cover={cover} />
-				</div>
-			)}
 			{description && (
 				<GridRowStriped className="min-h-12 flex items-center justify-center px-4 py-2 text-sm md:px-8">
 					{description}
 				</GridRowStriped>
+			)}
+			{audio && (
+				<div className="relative z-10 mt-5 px-3 lg:hidden">
+					<RetroMusicPlayer source={audio} cover={cover} />
+				</div>
 			)}
 		</header>
 	)

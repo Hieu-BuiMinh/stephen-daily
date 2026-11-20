@@ -10,7 +10,12 @@ import {
 
 export type DailyNavItemData = { number: string; label: string } & (
 	| { href: string; description: string }
-	| { heading: string; imageSrc: string; items: { label: string; subtitle: string; href?: string }[] }
+	| {
+			heading: string
+			imageSrc?: string
+			itemsLayout?: 'grid'
+			items: { label: string; subtitle: string; href?: string }[]
+	  }
 )
 
 export type DailyNavItemProps = DailyNavItemData & {
@@ -54,11 +59,25 @@ export function DailyNavItem(props: DailyNavItemProps) {
 						<p className="px-4 pt-4 pb-2 font-sans text-[10px] font-medium tracking-[0.18em] text-muted-foreground uppercase">
 							{props.heading}
 						</p>
-						<div className="grid grid-cols-[96px_minmax(0,1fr)] gap-4 px-4 pt-1 pb-3 sm:grid-cols-[120px_minmax(0,1fr)]">
-							<div className="relative min-h-0">
-								{props.renderImage(props.imageSrc, 'h-full w-full border object-cover')}
-							</div>
-							<ul className="min-w-0">
+						<div
+							className={
+								props.imageSrc
+									? 'grid grid-cols-[96px_minmax(0,1fr)] gap-4 px-4 pt-1 pb-3 sm:grid-cols-[120px_minmax(0,1fr)]'
+									: 'px-4 pt-1 pb-3'
+							}
+						>
+							{props.imageSrc && (
+								<div className="relative min-h-0">
+									{props.renderImage(props.imageSrc, 'h-full w-full border object-cover')}
+								</div>
+							)}
+							<ul
+								className={
+									props.itemsLayout === 'grid'
+										? 'grid min-w-0 grid-cols-2 gap-x-3 lg:grid-cols-3'
+										: 'min-w-0'
+								}
+							>
 								{props.items.map((item) => {
 									const itemContent = (
 										<>
@@ -84,7 +103,7 @@ export function DailyNavItem(props: DailyNavItemProps) {
 												<button
 													type="button"
 													disabled
-													className={`${subnavItemClassName} text-foreground`}
+													className={`${subnavItemClassName} text-foreground disabled:opacity-55`}
 												>
 													{itemContent}
 												</button>

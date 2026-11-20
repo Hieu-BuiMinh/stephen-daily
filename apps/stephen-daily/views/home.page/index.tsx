@@ -3,7 +3,7 @@ import KeaBird from '@/components/kea-bird'
 import GithubContributionSection from '@/views/home.page/components/home-sections/github-contribution-section'
 import HeroCarousel from '@/views/home.page/components/home-sections/heroes/hero-carousel'
 import LatestArticlesSection from '@/views/home.page/components/home-sections/latest-articles-section'
-import { DailyBaseImage, GridRow, GridSeparator } from '@repo/stephen-ui/daily-components'
+import { GridRow, GridSeparator } from '@repo/stephen-ui/daily-components'
 
 function StephenDailyHomePageView() {
 	return (
@@ -19,23 +19,6 @@ function StephenDailyHomePageView() {
 			<GridSeparator />
 			<GithubContributionSection />
 			<GridSeparator />
-
-			<DailyBaseImage
-				src="/assets/images/fallback/01.png"
-				alt="Ảnh phong cách báo cũ"
-				width={320}
-				height={320}
-				className="size-80 object-cover"
-				preview
-			/>
-			<DailyBaseImage
-				src="/assets/images/fallback/01.png"
-				alt="Ảnh phong cách báo cũ"
-				width={320}
-				height={320}
-				className="size-80 object-cover"
-				preview
-			/>
 		</PageViewContainer>
 	)
 }
